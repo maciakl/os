@@ -1,0 +1,6 @@
+os
+os*.exe
+os.zip
+os.tgz
+os_*.zip
+os_*.tgz
