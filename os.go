@@ -19,6 +19,7 @@ func main() {
     var hideName bool
     var showIcon bool
     var showDetail bool
+    var help, version bool
 
     flag.Usage = func() {
         Usage()
@@ -31,13 +32,27 @@ func main() {
     flag.BoolVar(&showIcon, "i", false, "Show the icon of the operating system")
     flag.BoolVar(&showDetail, "detail", false, "Show the detail of the operating system")
     flag.BoolVar(&showDetail, "d", false, "Show the detail of the operating system")
+    flag.BoolVar(&version, "version", false, "Show version and quit")
+    flag.BoolVar(&version, "v", false, "show version and quit")
+    flag.BoolVar(&help, "help", false, "Show usage and quit")
+    flag.BoolVar(&help, "h", false, "show usage and quit")
     flag.Parse()
+
+    if version {
+        Version()
+        os.Exit(0)
+    }
+
+    if help {
+        Usage()
+        os.Exit(0)
+    }
 
     if len(flag.Args()) > 1 {
         switch os.Args[1] {
-        case "-v", "-version":
+        case "version":
             Version()
-        case "-h", "-help":
+        case "help":
             Usage()
         default:
             Usage()
@@ -126,7 +141,7 @@ func getDetail(name string) string {
         case "linux":
             return linuxDetail()
         case "freebsd":
-            return unixDetail()
+            return linuxDetail()
         case "netbsd":
             return unixDetail()
         case "openbsd":
@@ -224,9 +239,9 @@ func linuxDetail() string {
 }
 
 func unixDetail() string {
-    // run uname -a
+    // run uname -mrs
 
-    cmd := exec.Command("uname", "-a")
+    cmd := exec.Command("uname", "-mrs")
     out, err := cmd.Output()
     if err != nil {
         fmt.Fprintln(os.Stderr, err)
