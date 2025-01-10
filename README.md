@@ -28,8 +28,7 @@ Until now.
 
 By default `os` prints out the name of the platform you are running on such as `linux`, `windows`, `darwin`, `freebsd`, etc..
 
-If you use the `-i` flag it will show a cute little icon symbolizing the operating system such as:  or
-. If you happen to be running Linux it will try to show your distribution's logo instead.
+If you use the `-i` flag it will show a cute little icon symbolizing the operating system (such as the apple logo for macOS). If you happen to be running Linux it will try to show your distribution's logo instead.
 
 If you use the `-n` flag it will hide the name of the platform. You can use this flag in combination with `-i` to only show the icon.
 
