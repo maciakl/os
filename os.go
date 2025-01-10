@@ -151,9 +151,35 @@ func windowsDetail() string {
 }
 
 func macDetail() string {
+
+    var product, version string
+
     // run sw_vers 
-    // or /usr/lib/PlistBuddy -c "Print :ProductVersion" /System/Library/CoreServices/SystemVersion.plist
-    return "Apple macOS"
+    cmd := exec.Command("sw_vers")
+    out, err := cmd.Output()
+    if err != nil {
+        fmt.Fprintln(os.Stderr, err)
+        os.Exit(1)
+    }
+
+    // get the ProductName from the output
+    lines := bytes.Split(out, []byte("\n"))
+    for _, line := range lines {
+        if bytes.HasPrefix(line, []byte("ProductName:")) {
+            line = bytes.TrimPrefix(line, []byte("ProductName:"))
+            line = bytes.TrimSpace(line)
+             product = string(line)
+        }
+
+        if bytes.HasPrefix(line, []byte("ProductVersion:")) {
+            line = bytes.TrimPrefix(line, []byte("ProductVersion:"))
+            line = bytes.TrimSpace(line)
+             version = string(line)
+        }
+    }
+
+    output := product + " " + version
+    return output
 }
 
 func linuxDetail() string {
