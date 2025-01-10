@@ -34,5 +34,37 @@ If you use the `-n` flag it will hide the name of the platform. You can use this
 
 Finally the `-d` flag will show the detailed distribution name and version number. For example: `Microsoft Windows 10 Pro 22H2` or `Ubuntu 20.04.3 LTS`.
 
+## Installing
 
-    
+There are few different ways:
+
+### Platform Independent
+
+ Install via `go`:
+ 
+    go install github.com/maciakl/os@latest
+
+### Linux
+
+On Linux (requires `wget` & `unzip`, installs to `/usr/local/bin`):
+
+    p="os" && wget -qN "https://github.com/maciakl/${p}/releases/latest/download/${p}_lin.zip" && unzip -oq ${p}_lin.zip && rm -f ${p}_lin.zip && chmod +x ${p} && sudo mv ${p} /usr/local/bin
+
+To uninstall, simply delete it:
+
+    rm -f /usr/local/bin/jjmp
+
+### Windows
+
+On Windows, this tool is distributed via `scoop` (see [scoop.sh](https://scoop.sh)).
+
+ First, you need to add my bucket:
+
+    scoop bucket add maciak https://github.com/maciakl/bucket
+    scoop update
+
+ Next simply run:
+ 
+    scoop install os
+
+If you don't want to use `scoop` you can simply download the executable from the release page and extract it somewhere in your path.
