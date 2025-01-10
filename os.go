@@ -5,6 +5,7 @@ import (
 "fmt"
 "flag"
 "bytes"
+"strings"
 "runtime"
 "os/exec"
 "path/filepath"
@@ -69,6 +70,10 @@ func showOperatingSystem(hideName, showIcon, showDetail bool) {
     icon := getIconFromName(name)
     detail := getDetail(name)
 
+    if name == "linux" {
+        icon = GetLinuxIcon(detail)
+    }
+
     var output string
 
     if showIcon {
@@ -104,7 +109,7 @@ func getIconFromName(name string) string {
         case "openbsd":
             return ""
         case "solaris":
-            return ""
+            return ""
         default:
             return "󰆧"
     }
@@ -138,14 +143,26 @@ func windowsDetail() string {
 
     // run wmic os get caption
     cmd := exec.Command("wmic", "os", "get", "caption") 
-    out, err := cmd.Output()
+    capt, err := cmd.Output()
     if err != nil {
         fmt.Fprintln(os.Stderr, err)
         os.Exit(1)
     }
 
-    out = out[8:] // remove "Caption" from the output
-    out = bytes.TrimSpace(out) // remove leading and trailing whitespaces
+    capt = capt[8:] // remove "Caption" from the output
+    capt = bytes.TrimSpace(capt) // remove leading and trailing whitespaces
+
+    ver, err := exec.Command("reg", "query", "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", "/v", "DisplayVersion").Output()
+    if err != nil {
+        fmt.Fprintln(os.Stderr, err)
+        os.Exit(1)
+    }
+
+    ver = bytes.TrimSpace(ver[bytes.Index(ver, []byte("REG_SZ"))+6:])
+
+    out := capt
+    out = append(out, ' ')
+    out = append(out, ver...)
 
     return string(out)
 }
@@ -191,4 +208,125 @@ func unixDetail() string {
     }
 
     return string(out)
+}
+
+func GetLinuxIcon(detail string) string {
+    
+    // check if the detail contains "Ubuntu"
+    if strings.Contains(detail, "Ubuntu") {
+        return "";
+    }
+    
+    // check if the detail contains "Debian"
+    if strings.Contains(detail, "Debian") {
+        return "";
+    }
+
+    // check if the detail contains Arch
+    if strings.Contains(detail, "Arch") {
+        return "";
+    }
+
+    // check if the detail contains Fedora
+    if strings.Contains(detail, "Fedora") {
+        return "";
+    }
+
+    // check if the detail contains Kali
+    if strings.Contains(detail, "Kali") {
+        return "";
+    }
+
+    // check if the detail contains Mint
+    if strings.Contains(detail, "Mint") {
+        return "󰣭";
+    }
+
+    // check if the detail contains CentOS
+    if strings.Contains(detail, "CentOS") {
+        return "";
+    }
+
+    // check if the detail contains Red Hat
+    if strings.Contains(detail, "Red Hat") {
+        return "";
+    }
+
+    // check if the detail contains SUSE
+    if strings.Contains(detail, "SUSE") {
+        return "";
+    }
+
+    // check if the detail contains Gentoo
+    if strings.Contains(detail, "Gentoo") {
+        return "";
+    }
+
+    // check if the detail contains Slackware
+    if strings.Contains(detail, "Slackware") {
+        return "";
+    }
+
+    // check if the detail contains Alpine
+    if strings.Contains(detail, "Alpine") {
+        return "";
+    }
+
+    // check if the detail contains Raspbian
+    if strings.Contains(detail, "Raspbian") {
+        return "";
+    }
+
+    // check if the detail contains Void
+    if strings.Contains(detail, "Void") {
+        return "";
+    }
+
+    // check if the detail contains Manjaro
+    if strings.Contains(detail, "Manjaro") {
+        return "";
+    }
+
+    // check if the detail contains openSUSE
+    if strings.Contains(detail, "openSUSE") {
+        return "";
+    }
+
+    // check if the detail contains elementary
+    if strings.Contains(detail, "elementary") {
+        return "";
+    }
+
+    // check if the detail contains Pop!_OS
+    if strings.Contains(detail, "Pop!_OS") {
+        return "";
+    }
+
+    // check if the detail contains Parrot
+    if strings.Contains(detail, "Parrot") {
+        return "";
+    }
+
+    // check if the detail contains Zorin
+    if strings.Contains(detail, "Zorin") {
+        return "";
+    }
+
+    // check if the detail contains NixOS
+    if strings.Contains(detail, "NixOS") {
+        return "";
+    }
+
+    // check if the detail contains Lubuntu
+    if strings.Contains(detail, "Lubuntu") {
+        return "󰕈";
+    }
+
+    // check if the detail contains Xubuntu
+    if strings.Contains(detail, "Xubuntu") {
+        return "󰕈";
+    }
+
+
+    return "";
 }
