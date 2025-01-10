@@ -75,6 +75,7 @@ func Usage() {
     fmt.Println("  -h, -help       Print this message and exit")
     fmt.Println("  -i, -icon       Show the icon of the operating system")
     fmt.Println("  -n, -name       Hide the name of the operating system")
+    fmt.Println("  -d, -detail     Show the distribution name and version")
     os.Exit(0)
 }
 
