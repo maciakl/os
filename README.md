@@ -32,7 +32,17 @@ If you use the `-i` flag it will show a cute little icon symbolizing the operati
 
 If you use the `-n` flag it will hide the name of the platform. You can use this flag in combination with `-i` to only show the icon.
 
-Finally the `-d` flag will show the detailed distribution name and version number. For example: `Microsoft Windows 10 Pro 22H2` or `Ubuntu 20.04.3 LTS`.
+Finally the `-d` flag will show the detailed distribution name and version number.
+
+Examples:
+  
+<img width="326" alt="os2" src="https://github.com/user-attachments/assets/e56fe463-99de-4b0d-8780-2f0fd6076b50" />
+
+On Linux:
+
+<img width="309" alt="os" src="https://github.com/user-attachments/assets/cded904d-d42e-4e17-be11-6d20fa6cee9c" />
+
+
 
 ## Installing
 
