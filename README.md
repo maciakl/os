@@ -28,12 +28,53 @@ Until now.
 
 By default `os` prints out the name of the platform you are running on such as `linux`, `windows`, `darwin`, `freebsd`, etc..
 
-If you use the `-i` flag it will show a cute little icon symbolizing the operating system such as:  or
-. If you happen to be running Linux it will try to show your distribution's logo instead.
+If you use the `-i` flag it will show a cute little icon symbolizing the operating system (such as the apple logo for macOS). If you happen to be running Linux it will try to show your distribution's logo instead.
 
 If you use the `-n` flag it will hide the name of the platform. You can use this flag in combination with `-i` to only show the icon.
 
-Finally the `-d` flag will show the detailed distribution name and version number. For example: `Microsoft Windows 10 Pro 22H2` or `Ubuntu 20.04.3 LTS`.
+Finally the `-d` flag will show the detailed distribution name and version number.
+
+Examples:
+  
+<img width="326" alt="os2" src="https://github.com/user-attachments/assets/e56fe463-99de-4b0d-8780-2f0fd6076b50" />
+
+On Linux:
+
+<img width="309" alt="os" src="https://github.com/user-attachments/assets/cded904d-d42e-4e17-be11-6d20fa6cee9c" />
 
 
-    
+
+## Installing
+
+There are few different ways:
+
+### Platform Independent
+
+ Install via `go`:
+ 
+    go install github.com/maciakl/os@latest
+
+### Linux
+
+On Linux (requires `wget` & `unzip`, installs to `/usr/local/bin`):
+
+    p="os" && wget -qN "https://github.com/maciakl/${p}/releases/latest/download/${p}_lin.zip" && unzip -oq ${p}_lin.zip && rm -f ${p}_lin.zip && chmod +x ${p} && sudo mv ${p} /usr/local/bin
+
+To uninstall, simply delete it:
+
+    rm -f /usr/local/bin/jjmp
+
+### Windows
+
+On Windows, this tool is distributed via `scoop` (see [scoop.sh](https://scoop.sh)).
+
+ First, you need to add my bucket:
+
+    scoop bucket add maciak https://github.com/maciakl/bucket
+    scoop update
+
+ Next simply run:
+ 
+    scoop install os
+
+If you don't want to use `scoop` you can simply download the executable from the release page and extract it somewhere in your path.
