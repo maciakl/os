@@ -11,7 +11,7 @@ import (
 "path/filepath"
 )
 
-const version = "0.1.0"
+const version = "0.1.1"
 
 
 func main() {
@@ -75,7 +75,7 @@ func Usage() {
     fmt.Println("  -h, -help       Print this message and exit")
     fmt.Println("  -i, -icon       Show the icon of the operating system")
     fmt.Println("  -n, -name       Hide the name of the operating system")
-    fmt.Println("  -d, -detail     Show the distribution name and version")
+    fmt.Println("  -d, -detail     Hide the name of the operating system")
     os.Exit(0)
 }
 
