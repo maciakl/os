@@ -22,12 +22,16 @@ builds:
       - linux
       - windows
       - darwin
+      - freebsd
+      - netbsd
+      - openbsd
+      - solaris
 
 archives:
   - formats: [tar.gz]
     # this name template makes the OS and Arch compatible with the results of `uname`.
     name_template: >-
-      {{ .ProjectName }}_
+      {{ .ProjectName }}_{{ .Version }}_
       {{- title .Os }}_
       {{- if eq .Arch "amd64" }}x86_64
       {{- else if eq .Arch "386" }}i386
@@ -45,8 +49,10 @@ changelog:
       - "^docs:"
       - "^test:"
 
-env_files:
-  github_token: .env
+announce:
+  bluesky:
+    enabled: true
+    username: "lukemaciak.bsky.social"
 
 release:
   footer: >-
