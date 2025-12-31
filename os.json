@@ -1,9 +1,0 @@
-{
-    "version": "0.1.0",
-    "description": "A new scoop package",
-    "homepage": "https://github.com/maciakl/os",
-    "checkver": "github",
-    "url": "https://github.com/maciakl/os/releases/download/v0.1.0/os_win.zip",
-    "bin": "os.exe",
-    "license": "freeware"
-}
