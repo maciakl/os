@@ -56,13 +56,17 @@ There are few different ways:
 
 ### Linux
 
-On Linux (requires `wget` & `unzip`, installs to `/usr/local/bin`):
+Use [grab](https://github.com/maciakl/grab)
 
-    p="os" && wget -qN "https://github.com/maciakl/${p}/releases/latest/download/${p}_lin.zip" && unzip -oq ${p}_lin.zip && rm -f ${p}_lin.zip && chmod +x ${p} && sudo mv ${p} /usr/local/bin
+    grab maciakl/os
 
-To uninstall, simply delete it:
+### macOS
 
-    rm -f /usr/local/bin/jjmp
+Use `homebrew`:
+
+    brew tap maciakl/tap
+    brew trust maciakl/tap
+    brew install os
 
 ### Windows
 
